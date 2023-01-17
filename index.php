@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=<, initial-scale=1.0">
-    <title>Document</title>
+    <?php include 'components\includes_css.php'; ?>
+    <title>Login</title>
 </head>
+
 <body>
-   <h1>Bienvenidos
-   </h1>
+   <main class="container">
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <img src="" alt="">
+        </div>
+        <div class="col s12 m6 l6">
+            <h1>Bienvenidos</h1>
+        </div>
+    </div>
+   </main>
+
+    <?php include 'components\includes_js.php'; ?>
 </body>
+
 </html>
