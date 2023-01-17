@@ -16,7 +16,7 @@
                 <div class="container_form">
                     <h5 class="center">BUENAS TARDES BIENVENIDO</h5>
                     <div class="divider"></div>
-                    <form id="loginForm" action="" method="post">
+                    <form id="loginForm" action="funciones_php/funciones_login.php" method="post">
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">account_circle</i>
@@ -31,7 +31,7 @@
                         </div>
                     </form>
                     <div class="divider"></div>
-                    <button class="btn waves-effect waves-light indigo accent-2 right" style="top: 10px;" type="submit" form="loginForm" value="Submit">
+                    <button class="btn btn-small waves-effect waves-light indigo accent-2 right" style="top: 10px;" type="submit" form="loginForm" value="Submit">
                         Ingresar
                     </button>
                 </div>
