@@ -1,5 +1,5 @@
-(function ($) {
-  $(function () {
-    $(".sidenav").sidenav();
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+let url = "http://localhost/login_cie/funciones_php/";
+
+$(document).ready(() => {
+  $(".sidenav").sidenav();
+});
