@@ -22,7 +22,8 @@ async function login() {
       return response.json();
     })
     .then((result) => {
-      console.log(result.user[0]);
+      window.location.href=result.url;
+      // console.log(result);
     })
     .catch((error) => {
       console.log("Request failed", error);

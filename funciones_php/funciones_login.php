@@ -37,21 +37,12 @@ if ($action === 'login') {
         $_SESSION['Token'] = $row['Token'];
         $_SESSION['Status'] = $row['Status'];
         $res['error'] = false;
-
-        redirect();
+        $res['url'] = $_SESSION['UserType'];
     } else {
         $res['error'] = true;
         $res['message'] = "Alerta! datos incorrectos";
     }
 }
-
-function redirect()
-{
-    $url =  'http://' . $_SERVER['SERVER_NAME'] . '/login_cie/' . $_SESSION['UserType'];
-    header('location:' . $url);
-    exit();
-}
-
 
 mysqli_close($conn);
 header("Content-type: application/json");
