@@ -21,33 +21,44 @@ if ($action === 'login') {
     INNER JOIN userstokens t on u.IdUser = t.IdUser
     WHERE Email='$user_email' and Password='$user_password'");
 
+    // $result = $conn->query("SELECT * FROM users  WHERE Email='$user_email' and Password='$user_password'");
+
+    //Finded user
     if ($result->num_rows >= 1) {
         $row = $result->fetch_array(MYSQLI_ASSOC);
+        //Create JWT
         $jwt = jwt($row['IdUser'], $row['Email']);
-        $res['jwt'] = $jwt;
 
-        // session_start();
-        // //UserData
-        // $_SESSION['IdUser'] = $row['IdUser'];
-        // $_SESSION['Name'] = $row['Name'];
-        // $_SESSION['LastName'] = $row['LastName'];
-        // $_SESSION['NickName'] = $row['NickName'];
-        // $_SESSION['Email'] = $row['Email'];
-        // $_SESSION['ProfilePicture'] = $row['ProfilePicture'];
+        //Update JWT
+        if (updateToken($conn, $row['IdUser'], $jwt)) {
+            session_start();
+            //UserData
+            $_SESSION['IdUser'] = $row['IdUser'];
+            $_SESSION['Name'] = $row['Name'];
+            $_SESSION['LastName'] = $row['LastName'];
+            $_SESSION['NickName'] = $row['NickName'];
+            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['ProfilePicture'] = $row['ProfilePicture'];
 
-        // //UserDetails
-        // $_SESSION['Permissions'] = $row['Permissions'];
-        // $_SESSION['UserType'] = $row['UserType'];
+            //UserDetails
+            $_SESSION['Permissions'] = $row['Permissions'];
+            $_SESSION['UserType'] = $row['UserType'];
 
-        // //UserToken
-        // $_SESSION['Token'] = $row['Token'];
-        // $_SESSION['Status'] = $row['Status'];
-        // $res['error'] = false;
-        // $res['url'] = $_SESSION['UserType'];
+            //UserToken
+            $_SESSION['Token'] = $row['Token'];
+            $_SESSION['Status'] = $row['Status'];
+            $res['error'] = false;
+            $res['url'] = $_SESSION['UserType'];
+        }
     } else {
         $res['error'] = true;
         $res['message'] = "Alerta! datos incorrectos";
     }
+}
+
+function updateToken($conn, $IdUser, $arr)
+{
+    return $conn->query("UPDATE userstokens SET Token ='" . $arr['jwt'] . "', Status = '" . $arr['exp'] . "' WHERE IdUser = $IdUser");
 }
 
 mysqli_close($conn);

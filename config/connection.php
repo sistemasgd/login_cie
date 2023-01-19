@@ -31,7 +31,10 @@ function jwt($idUser, $Email)
     );
     $jwt = JWT::encode($token, $key, 'HS256');
 
-    return $jwt;
+    return array(
+        "jwt" => $jwt,
+        "exp" => $token["exp"]
+    );
 }
 
 

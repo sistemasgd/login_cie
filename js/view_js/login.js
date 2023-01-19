@@ -12,7 +12,7 @@ $('input[name="user_password"]').keyup((e) => {
 async function login() {
   let obj = new FormData();
   let input_data = $("#loginForm").serializeArray();
-  
+
   $.each(input_data, function (key, input) {
     obj.append(input.name, input.value);
   });
@@ -22,8 +22,12 @@ async function login() {
       return response.json();
     })
     .then((result) => {
-      //window.location.href=result.url;
-      console.log(result.jwt);
+      if (result.error) {
+        M.toast({ html: result.message, classes: "red float rounded" });
+      } else {
+        window.location.href = result.url;
+        M.toast({ html: "Bienvenido", classes: "green float rounded" });
+      }
     })
     .catch((error) => {
       console.log("Request failed", error);
