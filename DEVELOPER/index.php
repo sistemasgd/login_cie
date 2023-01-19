@@ -16,17 +16,16 @@ $var6 = $_SESSION['ProfilePicture'];
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include '../components/includes_css.php'; ?>
 </head>
 
 <body>
+    <?php include '../components/nav.php'; ?>
+    <h1>BIENVENIDO <?= $var2 ?></h1>
     DEVELOPER HOME
-    <?
-    echo $var1;
-    ?>
+
+
+    <?php include '../components/includes_js.php'; ?>
 </body>
 
 </html>

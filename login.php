@@ -9,7 +9,6 @@
 <head>
     <?php include 'components/includes_css.php'; ?>
     <link rel="stylesheet" href="css/login.css">
-    <title>Login</title>
 </head>
 
 <body>
