@@ -25,8 +25,8 @@ async function login() {
       if (result.error) {
         M.toast({ html: result.message, classes: "red float rounded" });
       } else {
-        window.location.href = result.url;
         M.toast({ html: "Bienvenido", classes: "green float rounded" });
+        window.location.href = result.url;
       }
     })
     .catch((error) => {
