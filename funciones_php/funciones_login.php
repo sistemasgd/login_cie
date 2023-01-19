@@ -1,4 +1,7 @@
 <?php
+
+namespace Firebase\JWT;
+
 require('../config/connection.php');
 
 $res = array('error' => false);
@@ -20,24 +23,27 @@ if ($action === 'login') {
 
     if ($result->num_rows >= 1) {
         $row = $result->fetch_array(MYSQLI_ASSOC);
-        session_start();
-        //UserData
-        $_SESSION['IdUser'] = $row['IdUser'];
-        $_SESSION['Name'] = $row['Name'];
-        $_SESSION['LastName'] = $row['LastName'];
-        $_SESSION['NickName'] = $row['NickName'];
-        $_SESSION['Email'] = $row['Email'];
-        $_SESSION['ProfilePicture'] = $row['ProfilePicture'];
+        $jwt = jwt($row['IdUser'], $row['Email']);
+        $res['jwt'] = $jwt;
 
-        //UserDetails
-        $_SESSION['Permissions'] = $row['Permissions'];
-        $_SESSION['UserType'] = $row['UserType'];
+        // session_start();
+        // //UserData
+        // $_SESSION['IdUser'] = $row['IdUser'];
+        // $_SESSION['Name'] = $row['Name'];
+        // $_SESSION['LastName'] = $row['LastName'];
+        // $_SESSION['NickName'] = $row['NickName'];
+        // $_SESSION['Email'] = $row['Email'];
+        // $_SESSION['ProfilePicture'] = $row['ProfilePicture'];
 
-        //UserToken
-        $_SESSION['Token'] = $row['Token'];
-        $_SESSION['Status'] = $row['Status'];
-        $res['error'] = false;
-        $res['url'] = $_SESSION['UserType'];
+        // //UserDetails
+        // $_SESSION['Permissions'] = $row['Permissions'];
+        // $_SESSION['UserType'] = $row['UserType'];
+
+        // //UserToken
+        // $_SESSION['Token'] = $row['Token'];
+        // $_SESSION['Status'] = $row['Status'];
+        // $res['error'] = false;
+        // $res['url'] = $_SESSION['UserType'];
     } else {
         $res['error'] = true;
         $res['message'] = "Alerta! datos incorrectos";

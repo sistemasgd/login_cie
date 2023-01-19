@@ -22,8 +22,8 @@ async function login() {
       return response.json();
     })
     .then((result) => {
-      window.location.href=result.url;
-      // console.log(result);
+      //window.location.href=result.url;
+      console.log(result.jwt);
     })
     .catch((error) => {
       console.log("Request failed", error);
